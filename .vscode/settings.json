@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "functional": "cpp",
+        "__cxx_version": "cpp",
+        "memory_resource": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "vector": "cpp"
     }
 }
