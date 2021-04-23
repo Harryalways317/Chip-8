@@ -6,10 +6,10 @@ int main(int argc, char **argv)
 {
 
     struct chip8 chip8;
-    //-------------MEMORY TESTING-------
+    //----------------MEMORY TESTING-----------------------
     //chip8_memory_set(&chip8.memory, 0x400, 'Z');
     //printf("%c\n", chip8_memory_get(&chip8.memory, 50));
-    //-------------STACK TESTING----------
+    //-----------------STACK TESTING-----------------------
     // chip8.registers.SP = 0;
     // chip8_stack_push( &chip8,0xff);
     // chip8_stack_push( &chip8,0xaa);
