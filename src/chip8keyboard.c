@@ -2,7 +2,7 @@
 #include<assert.h>
 static void chip8_keyboard_ensure_in_bounds(int key)
 {
-    assert(key<=CHIP8_TOTAL_KEYS);
+    assert(key >= 0 && key < CHIP8_TOTAL_KEYS);
 }
 
 int chip8_keyboard_map(const char* map,char key)
