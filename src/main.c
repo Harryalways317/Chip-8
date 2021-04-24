@@ -28,6 +28,7 @@ int main(int argc, char **argv)
     chip8_init(&chip8);
     //-----------------Screen TESTING-----------------------
     //chip8_screen_set(&chip8.screen,10,10);
+    chip8_screen_draw_sprite(&chip8.screen, 32, 30,(const char*)&chip8.memory.memory[0x05], 5);
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
