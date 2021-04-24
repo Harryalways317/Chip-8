@@ -14,3 +14,27 @@ bool chip8_screen_is_set(struct chip8_screen* screen,int x,int y)
 {
     return screen-> pixels[y][x];
 }
+
+bool chip8_screen_draw_sprite(struct chip8_screen* screen, int x, int y, const char* sprite, int num)
+{
+    bool pixel_collison = false;
+
+    for (int ly = 0; ly < num; ly++)
+    {
+        char c = sprite[ly];
+        for (int lx = 0; lx < 8; lx++)
+        {
+            if ((c & (0b10000000 >> lx)) == 0)
+                continue;
+            
+            if (screen->pixels[(ly+y) % CHIP8_HEIGHT][(lx+x) % CHIP8_WIDTH])
+            {
+                pixel_collison = true;
+            }
+            //without collision implementation ----->  screen->pixels[(ly+y)][(lx+x)] ^= true; 
+            //the pixel is XOR ed to Screen
+            screen->pixels[(ly+y) % CHIP8_HEIGHT][(lx+x) % CHIP8_WIDTH] ^= true;
+        }
+    }
+    return pixel_collison;
+}
