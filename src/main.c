@@ -29,6 +29,7 @@ int main(int argc, char **argv)
     //-----------------Screen TESTING-----------------------
     //chip8_screen_set(&chip8.screen,10,10);
     chip8_screen_draw_sprite(&chip8.screen, 32, 30,(const char*)&chip8.memory.memory[0x05], 5);
+    chip8.registers.delay_timer = 255;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
@@ -91,6 +92,12 @@ int main(int argc, char **argv)
         }
 
         SDL_RenderPresent(renderer);
+        if(chip8.registers.delay_timer>0)
+        {
+            Sleep(100);
+            chip8.registers.delay_timer--;
+            printf("Delay!!!");
+        }
     }
 
 out:
