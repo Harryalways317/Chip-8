@@ -6,6 +6,8 @@
         "memory_resource": "cpp",
         "locale": "cpp",
         "memory": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "unistd.h": "c",
+        "stdbool.h": "c"
     }
 }
