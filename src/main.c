@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
+//#include<windows.h> //winapi
 #include "chip8.h"
+#include<unistd.h>
 #include <stdbool.h>
 const char keyboard_map[CHIP8_TOTAL_KEYS] = {
     SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
@@ -30,6 +32,7 @@ int main(int argc, char **argv)
     //chip8_screen_set(&chip8.screen,10,10);
     chip8_screen_draw_sprite(&chip8.screen, 32, 30,(const char*)&chip8.memory.memory[0x05], 5);
     chip8.registers.delay_timer = 255;
+    chip8.registers.sound_timer = 30;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
@@ -94,9 +97,16 @@ int main(int argc, char **argv)
         SDL_RenderPresent(renderer);
         if(chip8.registers.delay_timer>0)
         {
-            Sleep(100);
-            chip8.registers.delay_timer--;
-            printf("Delay!!!");
+            //Sleep(100);  //only in windowsapi
+            
+            chip8.registers.delay_timer-=1;
+            
+        }
+        if(chip8.registers.delay_timer>0)
+        { 
+            //Beep(15000,100*chip8.registers.sound_timer);  //only in windows api
+            chip8.registers.delay_timer = 0;
+            
         }
     }
 
