@@ -8,6 +8,7 @@
         "memory": "cpp",
         "vector": "cpp",
         "unistd.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "sdl.h": "c"
     }
 }
