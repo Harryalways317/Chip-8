@@ -11,7 +11,31 @@ const char keyboard_map[CHIP8_TOTAL_KEYS] = {
 
 int main(int argc, char **argv)
 {
+    if (argc < 2)
+    {
+        printf("You must provide a file to Load into memory");
+        return -1;
+    }
+    const char* filename = argv[1];
+    printf("The file name %s\n",filename);
+    FILE* f = fopen(filename,"r");
+    if(!f)
+    {
+        printf("File not opened correctly");
+        return -1;
+    }
+    fseek(f,0,SEEK_END);
+    long size = ftell(f);
+    fseek(f,0,SEEK_SET);
+    char buf[size];
+    int res  = fread(buf,size,1,f);
+    if(res!=1)
+    {
+        printf("Failed to read the file");
+        return -1;
+    }
 
+    
     struct chip8 chip8;
     //----------------MEMORY TESTING-----------------------
     //chip8_memory_set(&chip8.memory, 0x400, 'Z');
@@ -28,11 +52,16 @@ int main(int argc, char **argv)
     // bool is_down = chip8_keyboard_is_down(&chip8.keyboard,0x0f);
     //printf("%i\n",(int)is_down);
     chip8_init(&chip8);
+    chip8_load(&chip8,buf,size);
+
     //-----------------Screen TESTING-----------------------
     //chip8_screen_set(&chip8.screen,10,10);
     chip8_screen_draw_sprite(&chip8.screen, 32, 30,(const char*)&chip8.memory.memory[0x05], 5);
-    chip8.registers.delay_timer = 255;
-    chip8.registers.sound_timer = 30;
+    //-----------------Sound and Delay TESTING-----------------------
+    //chip8.registers.delay_timer = 255;
+    //chip8.registers.sound_timer = 30;
+    //----------------File Buffer Read TESTING-----------------------
+    //printf("Buffer %s\n",buf);
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
@@ -98,16 +127,18 @@ int main(int argc, char **argv)
         if(chip8.registers.delay_timer>0)
         {
             //Sleep(100);  //only in windowsapi
-            
+            usleep(1000);
+            //printf("Hii");
             chip8.registers.delay_timer-=1;
             
         }
-        if(chip8.registers.delay_timer>0)
+        if(chip8.registers.sound_timer>0)
         { 
             //Beep(15000,100*chip8.registers.sound_timer);  //only in windows api
-            chip8.registers.delay_timer = 0;
+            chip8.registers.sound_timer = 0;
             
         }
+        unsigned short opcode = chip8_memory_get_short(&chip8.memory,chip8.registers.PC);
     }
 
 out:
