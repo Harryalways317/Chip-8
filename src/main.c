@@ -139,6 +139,7 @@ int main(int argc, char **argv)
             
         }
         unsigned short opcode = chip8_memory_get_short(&chip8.memory,chip8.registers.PC);
+        chip8_exec(&chip8,opcode);
     }
 
 out:
