@@ -148,7 +148,21 @@ static void chip8_exec_extended(struct chip8 *chip8, unsigned short opcode)
     case 0x8000:
         chip8_exec_extended_eight(&chip8, opcode);
         break;
-
+    //9xy0 - SNE Vx, Vy
+    case 0x9000:
+        if (chip8->registers.V[x] != chip8->registers.V[y])
+        {
+            chip8->registers.PC += 2; //each instruction is 2 bytes
+        }
+        break;
+    //Annn - LD I, addr
+    case 0xA000:
+        chip8->registers.I = nnn;
+        break;
+    //Bnnn - JP V0, addr
+    case 0xB000:
+        chip8->registers.PC = nnn + chip8->registers.V[0x00];
+        break;
     default:
         break;
     }
