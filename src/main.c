@@ -121,7 +121,7 @@ int main(int argc, char **argv)
         }
 
         if (chip8.registers.sound_timer > 0)
-        {
+        {   
             //Beep(15000, 10 * chip8.registers.sound_timer);
             chip8.registers.sound_timer = 0;
         }
