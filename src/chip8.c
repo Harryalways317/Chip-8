@@ -39,28 +39,44 @@ static void chip8_exec_extended_eight(struct chip8 *chip8, unsigned short opcode
     unsigned char x = (opcode >> 8) & 0x000f; //3xkk extracting x  bit shifting if 3126 then extract 1
     unsigned char y = (opcode >> 4) & 0x000f; //5xy0 extracting y
     unsigned char final_four_bits = opcode & 0x000f;
+    unsigned short tmp = 0;
     switch (final_four_bits)
     {
     //8xy0 - LD Vx, Vy  Set Vx = Vy.
     case 0x00:
         chip8->registers.V[x] == chip8->registers.V[y];
-        break;
+    break;
     //8xy1 - OR Vx, Vy  Set Vx = Vx OR Vy.
     case 0x01:
         chip8->registers.V[x] = chip8->registers.V[x] | chip8->registers.V[y];
-        break;
+    break;
     //8xy2 - AND Vx, Vy Set Vx = Vx AND Vy.
     case 0x02:
         chip8->registers.V[x] = chip8->registers.V[x] & chip8->registers.V[y];
-        break;
+    break;
     //8xy3 - XOR Vx, Vy  Set Vx = Vx XOR Vy
     case 0x03:
         chip8->registers.V[x] = chip8->registers.V[x] ^ chip8->registers.V[y];
-        break;
+    break;
     //8xy4 - ADD Vx, Vy  Set Vx = Vx + Vy, set VF = carry
     case 0x04:
-        
-        break;
+        tmp = chip8->registers.V[x] + chip8->registers.V[y];
+        chip8->registers.V[0x0f] = false;
+        if (tmp > 0xff)
+        {
+            chip8->registers.V[0x0f] = true;
+        }
+        chip8->registers.V[x] = tmp;
+    break;
+    //8xy5 - SUB Vx, Vy   Set Vx = Vx - Vy, set VF = NOT borrow.
+    case 0x05:
+        chip8->registers.V[0x0f] = false;
+        if (chip8->registers.V[x] > chip8->registers.V[y])
+        {
+            chip8->registers.V[0x0f] = true;
+        }
+        chip8->registers.V[x] = chip8->registers.V[x] - chip8->registers.V[y];
+    break;
     default:
         break;
     }
