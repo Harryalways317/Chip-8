@@ -9,6 +9,7 @@
         "vector": "cpp",
         "unistd.h": "c",
         "stdbool.h": "c",
-        "sdl.h": "c"
+        "sdl.h": "c",
+        "sdl_audio.h": "c"
     }
 }
