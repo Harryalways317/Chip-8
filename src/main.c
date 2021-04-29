@@ -5,6 +5,8 @@
 #include "SDL2/SDL.h"
 #include "chip8.h"
 #include "chip8keyboard.h"
+#include<SDL2/SDL_audio.h>
+// TODO: implement audio in mac
 
 const char keyboard_map[CHIP8_TOTAL_KEYS] = {
     SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
@@ -121,7 +123,7 @@ int main(int argc, char **argv)
         }
 
         if (chip8.registers.sound_timer > 0)
-        {   
+        {   beep()
             //Beep(15000, 10 * chip8.registers.sound_timer);
             chip8.registers.sound_timer = 0;
         }
