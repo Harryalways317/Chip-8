@@ -4,5 +4,5 @@
  compile<br>
  `make`<br>
  run<br>
- `./bin/main ./rom/Game_name` <br>
+ `./bin/main ./roms/Game_name` <br>
  README WILL BE UPDATED soon.😏
