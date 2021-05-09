@@ -119,6 +119,7 @@ int main(int argc, char **argv)
         if (chip8.registers.delay_timer > 0)
         {
             usleep(1);
+            //Sleep(10);
             chip8.registers.delay_timer -=1;
         }
 
