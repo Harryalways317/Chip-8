@@ -1,4 +1,7 @@
 # Chip-8 Emulator
 
-This is My first emulation Project 
+## References:
+1. [Cowgod Reference]: http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
+
+   
 
