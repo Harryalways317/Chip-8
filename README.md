@@ -6,6 +6,8 @@
 
 ### for macOS users:
 
+![](Chip-8 GIF-downsized_large.gif)
+
 #### clone the repository 
 
 `git clone https://github.com/Harryalways317/Chip-8.git`
