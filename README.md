@@ -6,7 +6,7 @@
 
 ### for macOS users:
 
-![](Chip-8 GIF-downsized_large.gif)
+(![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif))
 
 #### clone the repository 
 
