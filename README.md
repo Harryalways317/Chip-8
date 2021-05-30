@@ -8,6 +8,11 @@
 
 (![Alt Text](https://media.giphy.com/media/P5T5adSs10FfXrRn7N/giphy.gif))
 
+
+<br>
+keys to play are 1,2,3,4,5,6,7,8,9,a,b,c,d,e,f. Make sure CAPS LOCK is turned off
+<br>
+
 #### clone the repository 
 
 `git clone https://github.com/Harryalways317/Chip-8.git`
