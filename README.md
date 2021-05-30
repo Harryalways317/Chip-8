@@ -6,6 +6,8 @@
 
 ### for macOS users:
 
+(![Alt Text](https://media.giphy.com/media/P5T5adSs10FfXrRn7N/giphy.gif))
+
 #### clone the repository 
 
 `git clone https://github.com/Harryalways317/Chip-8.git`
